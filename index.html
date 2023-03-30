@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>test</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        scrollbar-width: none; 
+        -ms-overflow-style: none; 
+      }
+
+      body::-webkit-scrollbar {
+        display: none;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div>
+      <canvas data-engine="three.js r150" ></canvas>
+    </div>
+
+    <audio id="sound1" src="audio/sound1.wav" type="audio/wav"></audio>
+    <audio id="sound2" src="audio/sound2.wav" type="audio/wav"></audio>
+    <audio id="sound3" src="audio/sound3.wav" type="audio/wav"></audio>
+    <audio id="sound4" src="audio/sound4.wav" type="audio/wav"></audio>
+    <audio id="sound5" src="audio/sound5.wav" type="audio/wav"></audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/r127/examples/js/loaders/FBXLoader.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/r127/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/RGBELoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+      let scene, camera, renderer, model, controls;
+
+      function init() {
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xdddddd);
+
+        camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 5000);
+        camera.rotation.y = 45 / 180 * Math.PI;
+        camera.position.x = 800;
+        camera.position.y = 100;
+        camera.position.z = 1000;
+
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        const pmremGenerator = new THREE.PMREMGenerator( renderer );
+        pmremGenerator.compileEquirectangularShader();
+
+        controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.screenSpacePanning = false;
+        controls.minDistance = 100;
+        controls.maxDistance = 5000;
+        controls.maxPolarAngle = Math.PI / 2;
+
+        let loader = new THREE.FBXLoader();
+        loader.load("fbx/cicada.fbx", function (fbx) {
+          model = fbx;
+          model.scale.set(0.5, 0.5, 0.5);
+          scene.add(model);
+          animate();
+        });
+      }
+
+//position
+      var modelPositions = {
+        model1: { x: 50, y: 500, z: 0 },
+        model2: { x: -50, y: 250, z: 0 },
+        model3: { x: 50, y: 0, z: 0 },
+        model4: { x: 0, y: -250, z: 0 },
+        model5: { x: -100, y: -500, z: 0 }
+      };
+
+//sound
+      var modelSounds = {
+      'model1': 'sound1',
+      'model2': 'sound2',
+      'model3': 'sound3',
+      'model4': 'sound4',
+      'model5': 'sound5'
+      };
+
+//loading models
+      var loader = new THREE.FBXLoader();
+
+      for (var i = 1; i <= 5; i++) {
+        var modelId = 'model' + i;
+//calling fbx 
+        var modelUrl = 'cicada.fbx';
+        var modelPosition = modelPositions[modelId];
+        var textureUrl = 'textures/texture' + i + '.hdr';
+
+        loader.load(modelUrl, function(model) {
+          model.userData.id = modelId;
+          model.position.set(modelPosition.x, modelPosition.y, modelPosition.z);
+
+          new THREE.RGBELoader().setDataType( THREE.UnsignedByteType ).load( textureUrl, function ( texture ) {
+            var envMap = pmremGenerator.fromEquirectangular( texture ).texture;
+            pmremGenerator.dispose();
+
+          model.traverse(function(child) {
+            if (child.isMesh) {
+              child.material.envMap = envMap;
+              child.material.needsUpdate = true;
+            }
+          });
+        });
+
+          scene.add(model);
+
+          model.addEventListener('click', function() {
+            var soundId = modelSounds[model.userData.id];
+
+            var audioElement = document.getElementById(soundId);
+            audioElement.play();
+          });
+        });
+      }
+
+//
+      function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+        controls.update();
+      }
+
+      init();
+
+    </script>
+  </body>
+</html>
