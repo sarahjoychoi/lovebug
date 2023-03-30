@@ -9,7 +9,7 @@
 			body {
 				font-family: sans-serif;
 				font-size: 11px;
-				background-color: #000;
+				background-color: white;
 				margin: 0px;
 			}
 			canvas {
@@ -23,6 +23,7 @@
 			import * as THREE from './js/three.module.js';
 			import { APP } from './js/app.js';
 			import { VRButton } from './js/VRButton.js';
+			import { OrbitControls } from './js/OrbitControls.js';
 
 			window.THREE = THREE; // Used by APP Scripts.
 			window.VRButton = VRButton; // Used by APP Scripts.
@@ -37,11 +38,20 @@
 				player.setSize( window.innerWidth, window.innerHeight );
 				player.play();
 
+				var controls = new OrbitControls(player.camera, player.dom);
+				  controls.enableDamping = true;
+				  controls.dampingFactor = 0.05;
+				  controls.rotateSpeed = 0.5;
+				  controls.zoomSpeed = 1.2;
+				  controls.minDistance = 0;
+				  controls.maxDistance = 500;
+
 				document.body.appendChild( player.dom );
 
 				window.addEventListener( 'resize', function () {
 
 					player.setSize( window.innerWidth, window.innerHeight );
+					controls.update();
 
 				} );
 
