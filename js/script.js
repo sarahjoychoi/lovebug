@@ -7,7 +7,7 @@ const mixers = [];
 const DRACO_PATH = 'https://www.gstatic.com/draco/versioned/decoders/1.5.5/';
 
 const MODEL_PATH =
-  [ { fileName: 'cicada.glb' }]; 
+  [ { fileName: 'cicadaNew4-v1.glb' }]; 
 
 let loadedModels = [];
 
@@ -37,7 +37,7 @@ let loadedModels = [];
         pmremGenerator.compileEquirectangularShader();
         
         const nightTexture = new THREE.RGBELoader()
-				.setPath('skybox/') /* <<<--- Change this path to your file path */
+				.setPath('skyBox/') /* <<<--- Change this path to your file path */
 				.load('moonless_golf_1k.hdr', function(texture){
 					nightTexture.mapping = THREE.EquirectangularReflectionMapping;
 				   envMap = pmremGenerator.fromEquirectangular(texture).texture;
@@ -193,7 +193,7 @@ function getClipStartTime(index) {
   });
 };
 
- load3DModels = (list, destination, path = "/models/") => { /*  <<<--- Change this file path to your models current path */
+ load3DModels = (list, destination, path = "models/") => { /*  <<<--- Change this file path to your models current path */
     let promises = [];
 
     for (let j in list) {
