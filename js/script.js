@@ -54,7 +54,13 @@ let loadedModels = [];
         controls.minDistance = 50;
         controls.maxDistance = 250;
         controls.maxPolarAngle = Math.PI / 2;
-        
+	      
+// 04/05 Enable rotation
+controls.enableRotate = true;
+
+// Set the rotation speed
+controls.rotateSpeed = 0.5;
+	      
 loadModelFile = (fileName, path) => {
   return new Promise((resolve) => {
     let loader = new THREE.GLTFLoader();
@@ -156,6 +162,45 @@ loadModelFile = (fileName, path) => {
     models.push(clone);
     scene.add(clone);
   }
+	    
+	    // Load 3D models
+load3DModels(MODEL_PATH, loadedModels).then((gltf) => {
+  
+  // Audio files array
+  const audioFiles = ['audio.chime-1.wav', 'audio.chime-2.wav', 'audio.chime-3.wav', 'audio.chime-4.wav', 'audio.chime-5.wav'];
+
+  // Create an audio listener
+  const listener = new THREE.AudioListener();
+
+  // Attach the audio listener to the camera
+  camera.add(listener);
+
+  // Loop through each model and add a click event listener
+  for (let i = 0; i < models.length; i++) {
+
+    // Load the audio file for this model
+    const audioLoader = new THREE.AudioLoader();
+    audioLoader.load(audioFiles[i], (buffer) => {
+
+      // Create a new audio object with the loaded buffer
+      const audio = new THREE.Audio(listener).setBuffer(buffer);
+
+      // Add a click event listener to the model
+      models[i].addEventListener('click', () => {
+
+        // Play the audio file
+        audio.play();
+
+      });
+
+    });
+
+  }
+
+  animate();
+
+});
+
 
 for (let i = 0; i < models.length; i++) {
   const mixer = new THREE.AnimationMixer(models[i]);
