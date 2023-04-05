@@ -157,13 +157,12 @@ loadModelFile = (fileName, path) => {
     scene.add(clone);
   }
 	    
-
+// audio
   const audioFiles = ['audio.chime-1.wav', 'audio.chime-2.wav', 'audio.chime-3.wav', 'audio.chime-4.wav', 'audio.chime-5.wav'];
   const listener = new THREE.AudioListener();
 
   camera.add(listener);
 
-  // Loop through each model and add a click event listener
   for (let i = 0; i < models.length; i++) {
 
     const audioLoader = new THREE.AudioLoader();
