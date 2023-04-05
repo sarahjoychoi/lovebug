@@ -55,12 +55,6 @@ let loadedModels = [];
         controls.maxDistance = 250;
         controls.maxPolarAngle = Math.PI / 2;
 	      
-// 04/05 Enable rotation
-controls.enableRotate = true;
-
-// Set the rotation speed
-controls.rotateSpeed = 0.5;
-	      
 loadModelFile = (fileName, path) => {
   return new Promise((resolve) => {
     let loader = new THREE.GLTFLoader();
