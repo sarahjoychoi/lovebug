@@ -229,7 +229,7 @@ function onWindowResize() {
 
       function animate() {
         requestAnimationFrame(animate);
-        delta = clock.getDelta();
+        delta = clock.getDelta() * 0.25;
   			for ( const mixer of mixers ) mixer.update( delta ); 
         renderer.render(scene, camera);
         controls.update();
