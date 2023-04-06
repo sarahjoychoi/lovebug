@@ -18,7 +18,7 @@ let loadedModels = [];
         const container = document.getElementById("mainScene");
         
         scene = new THREE.Scene();
-        // scene.background = new THREE.Color(0xdddddd);
+        scene.background = new THREE.Color(0xdddddd);
 
         camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.001, 500);
         camera.position.set(0, 0, 120);
