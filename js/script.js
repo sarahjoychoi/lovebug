@@ -232,7 +232,7 @@ function onWindowResize() {
 
       function animate() {
         requestAnimationFrame(animate);
-        delta = clock.getDelta() * 0.4;
+        delta = clock.getDelta() * 0.3;
   			for ( const mixer of mixers ) mixer.update( delta ); 
         renderer.render(scene, camera);
         controls.update();
