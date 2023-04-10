@@ -153,6 +153,7 @@ loadModelFile = (fileName, path) => {
   shininess: 400,
   emissive: 1,
   reflectivity: 1,
+THREE.MultiplyBlending
 });
       }
     });
