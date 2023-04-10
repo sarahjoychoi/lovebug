@@ -138,14 +138,14 @@ loadModelFile = (fileName, path) => {
         o.material = new THREE.MeshPhysicalMaterial({
           color: colors[i],
   metalness: 0.8,
-  roughness: 0.1,
+  roughness: 0.05,
   transparent: true,
-  opacity: 0.5,
+  opacity: 0.3,
   transmission: 0.1,
   thickness: 5,
   side: THREE.DoubleSide,
   envMap: envMap,
-  envMapIntensity: 4,
+  envMapIntensity: 8,
   clearcoat: 1.0,
   clearcoatRoughness: 0.2,
   depthTest: true,
@@ -153,7 +153,6 @@ loadModelFile = (fileName, path) => {
   shininess: 400,
   emissive: 1,
   reflectivity: 1,
-THREE.MultiplyBlending
 });
       }
     });
