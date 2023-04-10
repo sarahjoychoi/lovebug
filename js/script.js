@@ -140,7 +140,7 @@ loadModelFile = (fileName, path) => {
   metalness: 0.8,
   roughness: 0.05,
   transparent: true,
-  opacity: 0.3,
+  opacity: 0.5,
   transmission: 0.1,
   thickness: 5,
   side: THREE.DoubleSide,
