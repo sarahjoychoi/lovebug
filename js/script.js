@@ -137,10 +137,10 @@ loadModelFile = (fileName, path) => {
         o.receiveShadow = true;
         o.material = new THREE.MeshPhysicalMaterial({
           color: colors[i],
-  metalness: 1.0,
+  metalness: 0.8,
   roughness: 0.1,
   transparent: true,
-  opacity: 0.8,
+  opacity: 0.5,
   transmission: 0.1,
   thickness: 5,
   side: THREE.DoubleSide,
