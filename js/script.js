@@ -28,6 +28,7 @@ let loadedModels = [];
         renderer.setPixelRatio( window.devicePixelRatio );
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMap.enabled = true;
+	renderer.shadowMap.bias = -0.002;
         renderer.PCFSoftShadowMap = true;
         container.appendChild(renderer.domElement);
         
@@ -145,7 +146,7 @@ loadModelFile = (fileName, path) => {
 	  thickness: 5,
 	  side: THREE.DoubleSide,
 	  envMap: envMap,
-	  envMapIntensity: 6,
+	  envMapIntensity: 5,
 	  clearcoat: 1.0,
 	  clearcoatRoughness: 0.2,
 	  depthTest: true,
