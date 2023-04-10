@@ -137,23 +137,23 @@ loadModelFile = (fileName, path) => {
         o.receiveShadow = true;
         o.material = new THREE.MeshPhysicalMaterial({
           color: colors[i],
-  metalness: 0.8,
-  roughness: 0.05,
-  transparent: true,
-  opacity: 0.5,
-  transmission: 0.1,
-  thickness: 5,
-  side: THREE.DoubleSide,
-  envMap: envMap,
-  envMapIntensity: 6,
-  clearcoat: 1.0,
-  clearcoatRoughness: 0.2,
-  depthTest: true,
-  depthWrite: true,
-  shininess: 200,
-  emissive: 1,
-  reflectivity: 1,
-});
+	  metalness: 1,
+	  roughness: 0.05,
+	  transparent: true,
+	  opacity: 0.5,
+	  transmission: 0.1,
+	  thickness: 5,
+	  side: THREE.DoubleSide,
+	  envMap: envMap,
+	  envMapIntensity: 5,
+	  clearcoat: 1.0,
+	  clearcoatRoughness: 0.2,
+	  depthTest: true,
+	  depthWrite: true,
+	  shininess: 200,
+	  emissive: 1,
+	  reflectivity: 1,
+	});
       }
     });
     models.push(clone);
