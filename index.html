@@ -52,9 +52,14 @@
     <script src="js/script.js"></script>
     <script>
       function toggleMute() {
-        var audio = document.querySelector("audio");
-        audio.muted = !audio.muted;
+        var audio = document.getElementById("bgm");
+        if (audio.paused) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
       }
+
       
       function toggleSubtitles() {
         // Your code to toggle subtitles goes here
