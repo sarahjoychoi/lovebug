@@ -9,6 +9,8 @@ const DRACO_PATH = 'https://www.gstatic.com/draco/versioned/decoders/1.5.5/';
 const MODEL_PATH =
   [ { fileName: 'cicadaNew4-v1.glb' }]; 
 
+const AUDIO_PATH = 'audio/audio-';
+
 let loadedModels = [];
 
       init();
@@ -155,6 +157,10 @@ loadModelFile = (fileName, path) => {
 	  emissive: 1,
 	  reflectivity: 1,
 	});
+	      o.addEventListener('mouseover', function () {
+            const audio = new Audio(`${AUDIO_PATH}${i + 1}.wav`);
+            audio.play();
+          });
       }
     });
     models.push(clone);
