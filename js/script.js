@@ -39,7 +39,7 @@ let loadedModels = [];
         
         const nightTexture = new THREE.RGBELoader()
 				.setPath('skyBox/') /* <<<--- Change this path to your file path */
-				.load('bedroom-2.hdr', function(texture){
+				.load('moonless_golf_1k.hdr', function(texture){
 					nightTexture.mapping = THREE.EquirectangularReflectionMapping;
 				   envMap = pmremGenerator.fromEquirectangular(texture).texture;
 				  scene.environment = envMap;
