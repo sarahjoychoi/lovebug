@@ -13,6 +13,7 @@ const AUDIO_PATH = 'audio/audio-';
 
 let loadedModels = [];
 
+
       init();
 
       function init() {
@@ -74,9 +75,14 @@ loadModelFile = (fileName, path) => {
       const colors = [ 0xB87333, 0xC0C0C0, 0xFFD700, 0x43464B, 0x6699CC ]
       const models = [];
 
-      model = gltf.scene;      
+      model = gltf.scene;   
+      let meshToRay = new THREE.Mesh(new THREE.BoxGeometry(10,18,20),new THREE.MeshBasicMaterial({transparent : true,opacity: 0})) 
+
 
   	for (let i = 0; i < 5; i++) {
+
+    const cloneMeshToRay = meshToRay.clone()
+
     const clone = THREE.SkeletonUtils.clone(model);
     const x = Math.random() * (window.innerWidth - 100) - (window.innerWidth / 2 - 50);
 		const y = Math.random() * (window.innerHeight - 100) - (window.innerHeight / 2 - 50);
@@ -165,6 +171,16 @@ loadModelFile = (fileName, path) => {
     });
     models.push(clone);
     scene.add(clone);
+
+
+    cloneMeshToRay.position.set( clone.position.x, clone.position.y, clone.position.z)   
+    cloneMeshToRay.rotation.set( clone.rotation.x, clone.rotation.y, clone.rotation.z)   
+    cloneMeshToRay.scale.set( clone.scale.x * 30, clone.scale.y * 30, clone.scale.z * 30)   
+    cloneMeshToRay.translateZ(-200 * scale)
+    cloneMeshToRay.translateY(200 * scale)
+    cloneMeshToRay.name = i
+    scene.add(cloneMeshToRay)   
+    objectsToTest.push(cloneMeshToRay)    
   }
 
 for (let i = 0; i < models.length; i++) {
@@ -237,11 +253,93 @@ function onWindowResize() {
 
 			}
 
+
+
+//Mouse
+const mouse = new THREE.Vector2(0,0)
+
+window.addEventListener('mousemove',(e)=>{
+  mouse.x = e.clientX / window.innerWidth * 2 - 1
+  mouse.y = -(e.clientY / window.innerHeight) * 2 + 1
+})
+
+//Raycaster
+const raycaster = new THREE.Raycaster()
+const objectsToTest = []
+let currentIntersect = null
+//Play audio
+
+const audio = [
+  new Audio('audio/audio-1.wav'),
+  new Audio('audio/audio-2.wav'),
+  new Audio('audio/audio-3.wav'),
+  new Audio('audio/audio-4.wav'),
+  new Audio('audio/audio-5.wav'),
+]
+
+const playAudio = (objectName)=>{
+
+  switch(objectName){
+    case 0 : audio[0].play()
+    break
+
+    case 1 : audio[1].play()
+    break
+
+    case 2 : audio[2].play()
+    break
+
+    case 3 : audio[3].play()
+    break
+
+    case 4 : audio[4].play()
+    break
+  }
+}
+
+//playAudioOnClick
+window.addEventListener('click',()=>{
+  if(currentIntersect){
+    playAudio(currentIntersect.object.name)
+  }
+})
+
+
       function animate() {
-        requestAnimationFrame(animate);
+        
+          //RayCaster
+
+      raycaster.setFromCamera(mouse,camera)    
+      const intersects = raycaster.intersectObjects(objectsToTest)
+      
+      if(intersects.length)
+      {
+          if(!currentIntersect)
+          {
+            //Mouse Enter
+            playAudio(intersects[0].object.name)
+          }
+          else if(currentIntersect.object.name !== intersects[0].object.name){
+            //Mouse changes object without leaving
+            playAudio(intersects[0].object.name)
+
+          }
+          currentIntersect = intersects[0]        
+      }
+      else
+      {
+          if(currentIntersect)
+          {
+            //Mouse Leave
+          }        
+          currentIntersect = null
+      }
+
         delta = clock.getDelta() * 0.3;
   			for ( const mixer of mixers ) mixer.update( delta ); 
         renderer.render(scene, camera);
         controls.update();
+        
+        requestAnimationFrame(animate);
 }
 
