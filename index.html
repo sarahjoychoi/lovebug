@@ -65,9 +65,30 @@
       }
 
       
-      function toggleSubtitles() {
-        // Your code to toggle subtitles goes here
-      }
+      function setSubtitle(lang) {
+  // Load the JSON file with the subtitles
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'subtitles.json');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      var subtitles = JSON.parse(xhr.responseText);
+
+      // Select the correct language from the JSON object
+      var language = subtitles[lang];
+
+      // Get the subtitle element and set its text to the selected language
+      var subtitleElement = document.getElementById('subtitle');
+      subtitleElement.innerHTML = language.text.join('<br>');
+    } else {
+      console.log('Failed to load subtitles: ' + xhr.statusText);
+    }
+  };
+  xhr.onerror = function() {
+    console.log('Failed to load subtitles: ' + xhr.statusText);
+  };
+  xhr.send();
+}
+
     </script>
   </body>
 </html>
