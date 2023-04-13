@@ -51,14 +51,12 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/loaders/RGBELoader.js"></script>
     <script src="js/script.js"></script>
     <script>
-function toggleMute() {
-  var audio = document.getElementById("bgm");
-  if (audio.muted) {
-    audio.muted = false;
-  } else {
-    audio.muted = true;
-  }
-}
+      function toggleMute() {
+        var audioElements = document.getElementsByTagName('audio');
+        for (var i = 0; i < audioElements.length; i++) {
+          audioElements[i].muted = !audioElements[i].muted;
+        }
+      }
 
       
       function toggleSubtitles() {
