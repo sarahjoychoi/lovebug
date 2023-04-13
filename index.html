@@ -39,7 +39,13 @@
     <div class="navbar">
       <a href="about.html">about</a>
       <a href="#" onclick="toggleMute()">mute</a>
-      <a href="#" onclick="toggleSubtitles()">subtitles</a>
+      <div class="dropdown">
+        <button class="dropbtn">subtitles</button>
+            <div class="dropdown-content">
+              <a href="#" onclick="setSubtitle('en')">en</a>
+              <a href="#" onclick="setSubtitle('fr')">fr</a>
+            </div>
+      </div>
     </div>
     <div id="mainScene"></div>
     <!-- <audio src="audio/chime-1.wav" autoplay loop id="bgm"></audio>-->
