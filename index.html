@@ -38,7 +38,7 @@
   <body>
     <div class="navbar">
       <a href="about.html">about</a>
-      <a href="#" onclick="toggleMute()">mute</a>
+      <a href="#" onclick="toggleMute()" id="mute-button">mute</a>
       <a href="#" onclick="toggleSubtitles()">subtitles</a>
       </div>
     </div>
@@ -53,18 +53,18 @@
     <script src="js/script.js"></script>
     <script>
 function toggleMute() {
-  var audioElements = document.getElementsByTagName('audio');
-  for (var i = 0; i < audioElements.length; i++) {
-    audioElements[i].muted = !audioElements[i].muted;
+  isMuted = !isMuted;
+  const allAudio = document.getElementsByTagName("audio");
+  for (let i = 0; i < allAudio.length; i++) {
+    allAudio[i].volume = isMuted ? 0 : 1;
   }
-  
-  var allAudio = document.querySelectorAll("audio");
-  for (var i = 0; i < allAudio.length; i++) {
-    allAudio[i].muted = true;
+  const allAudioInJs = audio;
+  for (let i = 0; i < allAudioInJs.length; i++) {
+    allAudioInJs[i].volume = isMuted ? 0 : 1;
   }
 }
 
-      
+
       function setSubtitle(lang) {
   // Load the JSON file with the subtitles
   var xhr = new XMLHttpRequest();
