@@ -43,7 +43,7 @@
       </div>
     </div>
     <div id="mainScene"></div>
-    <!-- <audio src="audio/chime-1.wav" autoplay loop id="bgm"></audio>-->
+    <audio src="audio/background.wav" autoplay loop id="bgm">
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/loaders/DRACOLoader.js"></script>
@@ -52,17 +52,21 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/loaders/RGBELoader.js"></script>
     <script src="js/script.js"></script>
     <script>
-function toggleMute() {
-  isMuted = !isMuted;
-  const allAudio = document.getElementsByTagName("audio");
-  for (let i = 0; i < allAudio.length; i++) {
-    allAudio[i].volume = isMuted ? 0 : 1;
-  }
-  const allAudioInJs = audio;
-  for (let i = 0; i < allAudioInJs.length; i++) {
-    allAudioInJs[i].volume = isMuted ? 0 : 1;
-  }
-}
+    function toggleMute() {
+      isMuted = !isMuted;
+      const allAudio = document.getElementsByTagName("audio");
+      for (let i = 0; i < allAudio.length; i++) {
+        if (allAudio[i].id === "bgm") {
+          allAudio[i].volume = isMuted ? 0 : 1;
+        } else {
+          allAudio[i].volume = isMuted ? 0 : 1;
+        }
+      }
+      const allAudioInJs = audio;
+      for (let i = 0; i < allAudioInJs.length; i++) {
+        allAudioInJs[i].volume = isMuted ? 0 : 1;
+      }
+    }
 
 
       function setSubtitle(lang) {
