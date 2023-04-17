@@ -222,7 +222,7 @@ function init() {
     });
   };
 
-  load3DModels = (list, destination, path = "models/") => { /*  <<<--- Change this file path to your models current path */
+  load3DModels = (list, destination, path = "models/") => { 
     let promises = [];
 
     for (let j in list) {
