@@ -39,6 +39,7 @@
     cursor: pointer;
     z-index: 1;
     border-radius: 8px;
+    margin: 0 5px;
   }
   
   .navbar span:hover {
