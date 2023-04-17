@@ -28,7 +28,6 @@
   .navbar span a{
     color: black;
     text-decoration: none;
-    padding: 0 5px;
   }
 
   .navbar span{
@@ -42,6 +41,10 @@
     border-radius: 8px;
   }
   
+  .navbar span:hover {
+    margin: 0 5px;
+  }
+
   .subtitleMenu{
     user-select: none;
     position: absolute;
