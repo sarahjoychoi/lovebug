@@ -16,7 +16,6 @@
     position: fixed;
     top: 0;
     right: 2vw;
-    font-family: Helvetica;
     font-size: 10pt;
     z-index: 1;
     width: 20vw;
@@ -83,6 +82,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 10pt;
     font-weight: 500;
     user-select: none;
   }
