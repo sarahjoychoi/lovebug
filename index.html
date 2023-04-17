@@ -5,46 +5,117 @@
     <title>lovebug</title>
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
     <style>
-    	#mainScene{
-        position: absolute;
-        top: 0;
-        left: 0;
-    		height: 100%;
-    		width: 100vw;
-           	}
-  
-      .navbar {
+       *{
+          padding: 0;
+          margin: 0;
+        }
+      
+    	.navbar {
         position: fixed;
         top: 0;
-        right: 0;
-        padding: 10px;
+        right: 2vw;
         font-family: Helvetica;
         font-size: 10pt;
         z-index: 1;
+        width: 20vw;
+        height: 5vh;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: flex-end;
       }
+  
+    .navbar span a{
+      color: black;
+      text-decoration: none;
+    }
       
-      .navbar a {
-        color: black;
-        padding: 8px 16px;
-        text-decoration: none;
-      }
+    .navbar span{
+      width: 33.33%;
+      height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 1;
+      border-radius: 8px;
+    }
+
+    .subtitleMenu{
+      user-select: none;
+      position: absolute;
+      z-index : 0;
+      height: 10vh;
+      width: 33.33%;
+      right: 0;
+      top : 20%;
+      background-color: #f3f3f3;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      padding-top : 2%;
+      opacity: 0;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    }
       
-      .navbar a:hover {
-        background-color: #ddd;
-        border-radius: 8px;
-        color: black;
-      }     
+    .subtitleMenu p{
+      cursor: pointer;
+    }
+      
+    .subLang{
+      cursor: pointer;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      z-index: 1;
+      user-select: none;
+      width: 70%;
+    }
+
+    #subtitles div{
+      position: absolute;
+      width : 40vw;
+      height: 7vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 500;
+      user-select: none;
+    }
+
+    #en{
+      font-weight: 800;
+    }  
+      
     </style>
   </head>
   <body>
     <div class="navbar">
-      <a href="about.html">about</a>
-      <a href="#" onclick="toggleMute()" id="mute-button">mute</a>
-      <a href="#" onclick="toggleSubtitles()">subtitles</a>
-      </div>
+      <span><a href="about.html">about</a></span>
+      <span onclick="toggleMute()">mute</span>
+      <span class="subtitleButton">subtitles</span>
+      <div class="subtitleMenu">
+        <div class="subLang">
+            <p id="en">en</p>
+            <p>-</p>
+            <p id="fr">fr</p> 
+        </div>
+       </div>           
     </div>
+    
     <div id="mainScene"></div>
-    <audio src="audio/background.wav" autoplay loop id="bgm">
+    
+    <div id="subtitles">
+      <div class="subtitle1"></div>
+      <div class="subtitle2"></div>
+      <div class="subtitle3"></div>
+      <div class="subtitle4"></div>
+      <div class="subtitle5"></div>
+    </div>
+    
+    <!--  <audio src="audio/background.wav" autoplay loop id="bgm"> -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/loaders/DRACOLoader.js"></script>
@@ -68,32 +139,6 @@
         allAudioInJs[i].volume = isMuted ? 0 : 1;
       }
     }
-
-
-      function setSubtitle(lang) {
-  // Load the JSON file with the subtitles
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'subtitles.json');
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      var subtitles = JSON.parse(xhr.responseText);
-
-      // Select the correct language from the JSON object
-      var language = subtitles[lang];
-
-      // Get the subtitle element and set its text to the selected language
-      var subtitleElement = document.getElementById('subtitle');
-      subtitleElement.innerHTML = language.text.join('<br>');
-    } else {
-      console.log('Failed to load subtitles: ' + xhr.statusText);
-    }
-  };
-  xhr.onerror = function() {
-    console.log('Failed to load subtitles: ' + xhr.statusText);
-  };
-  xhr.send();
-}
-
     </script>
   </body>
 </html>
