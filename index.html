@@ -2,121 +2,27 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>lovebug</title>
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-    <style>
-      #mainScene{
-        position: absolute;
-        top: 0;
-        left: 0;
-    		height: 100%;
-    		width: 100vw;
-           	}
-      
-    	.navbar {
-        position: fixed;
-        top: 0;
-        right: 2vw;
-        font-family: Helvetica;
-        font-size: 10pt;
-        z-index: 1;
-        width: 20vw;
-        height: 5vh;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: flex-end;
-      }
-  
-    .navbar span a{
-      color: black;
-      text-decoration: none;
-    }
-      
-    .navbar span{
-      width: 33.33%;
-      height: 80%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      z-index: 1;
-      border-radius: 8px;
-    }
-
-    .subtitleMenu{
-      user-select: none;
-      position: absolute;
-      z-index : 0;
-      height: 10vh;
-      width: 33.33%;
-      right: 0;
-      top : 20%;
-      background-color: #f3f3f3;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      align-items: center;
-      padding-top : 2%;
-      opacity: 0;
-      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    }
- 
-    .navbar a:hover {
-        background-color: #ddd;
-        border-radius: 8px;
-        color: black;
-    }
-      
-    .subtitleMenu p{
-      cursor: pointer;
-    }
-      
-    .subLang{
-      cursor: pointer;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      z-index: 1;
-      user-select: none;
-      width: 70%;
-    }
-
-    #subtitles div{
-      position: absolute;
-      width : 40vw;
-      height: 7vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: 500;
-      user-select: none;
-    }
-
-    #en{
-      font-weight: 800;
-    }  
-      
-    </style>
+    <title>lovebugs</title>
+    <link rel="stylesheet" href="css/index.css"/>
   </head>
   <body>
+
     <div class="navbar">
-      <span><a href="about.html">about</a></span>
-      <span onclick="toggleMute()">mute</span>
-      <span class="subtitleButton">subtitles</span>
-      <p id="toggleSubtitle">toggle</p>
+      <span><a href="about.html">About</a></span>
+      <span onclick="toggleMute()">Mute</span>
+      <span class="subtitleButton">Subtitles</span>
       <div class="subtitleMenu">
+        <p id="toggleSubtitle">Toggle</p>
         <div class="subLang">
             <p id="en">EN</p>
-            <p>/</p>
+            <p>-</p>
             <p id="fr">FR</p> 
         </div>
        </div>           
     </div>
-    
+
     <div id="mainScene"></div>
-    
+
     <div id="subtitles">
       <div class="subtitle1"></div>
       <div class="subtitle2"></div>
@@ -125,30 +31,25 @@
       <div class="subtitle5"></div>
     </div>
     
-    <!--  <audio src="audio/background.wav" autoplay loop id="bgm"> -->
+    <!-- <audio src="audio/chime-1.wav" autoplay loop id="bgm"></audio>-->
+ 
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/loaders/DRACOLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/utils/SkeletonUtils.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/loaders/RGBELoader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="js/script.js"></script>
-    <script>
-    function toggleMute() {
-      isMuted = !isMuted;
-      const allAudio = document.getElementsByTagName("audio");
-      for (let i = 0; i < allAudio.length; i++) {
-        if (allAudio[i].id === "bgm") {
-          allAudio[i].volume = isMuted ? 0 : 1;
+    <script>      
+      function toggleMute() {
+        var audio = document.getElementById("bgm");
+        if (audio.muted) {
+          audio.muted = false;
         } else {
-          allAudio[i].volume = isMuted ? 0 : 1;
+          audio.muted = true;
         }
       }
-      const allAudioInJs = audio;
-      for (let i = 0; i < allAudioInJs.length; i++) {
-        allAudioInJs[i].volume = isMuted ? 0 : 1;
-      }
-    }
     </script>
   </body>
 </html>
