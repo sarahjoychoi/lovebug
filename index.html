@@ -32,7 +32,7 @@
       <div class="subtitle5"></div>
     </div>
     
-    <audio src="audio/background.wav" autoplay loop id="bgm">
+    <audio src="audio/background.wav" loop id="bgm">
  
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/controls/OrbitControls.js"></script>
@@ -42,7 +42,12 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.146.0/examples/js/loaders/RGBELoader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="js/script.js"></script>
-    <script>      
+    <script>  
+      window.addEventListener('load', function() {
+        var audio = document.getElementById('bgm');
+        audio.play();
+      });
+      
       function toggleMute() {
         var audio = document.getElementById("bgm");
         if (audio.muted) {
