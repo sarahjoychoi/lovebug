@@ -255,7 +255,7 @@ function onWindowResize() {
 }
 
 //SUBTITLES -----------------------------------------------
-
+let subtitleAndAudioActived = false
 const buttonsNavBar = document.querySelectorAll('.navbar span')
 const subtitleButton = document.querySelector('.subtitleButton')
 
@@ -452,6 +452,7 @@ const playSubtitle = (tl,i)=>{
 
 //playAudioOnClick
 window.addEventListener('click',()=>{
+  subtitleAndAudioActived = true
   if(currentIntersect){
     playAudio(currentIntersect.object.name)
   }
@@ -459,7 +460,7 @@ window.addEventListener('click',()=>{
 
 function animate(){        
   //RayCaster
-  if(modelLoaded && subtitleLoaded){
+  if(modelLoaded && subtitleLoaded && subtitleAndAudioActived){
     raycaster.setFromCamera(mouse,camera)    
     const intersects = raycaster.intersectObjects(objectsToTest)
           
