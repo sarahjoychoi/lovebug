@@ -49,17 +49,13 @@
       });
       
       function toggleMute() {
-        var audioElements = document.querySelectorAll("audio");
-        for (var i = 0; i < audioElements.length; i++) {
-          if (audioElements[i].muted) {
-            audioElements[i].muted = false;
-          } else {
-            audioElements[i].muted = true;
-          }
+        var audio = document.getElementById("bgm");
+        if (audio.muted) {
+          audio.muted = false;
+        } else {
+          audio.muted = true;
         }
       }
-
-
 
     </script>
   </body>
