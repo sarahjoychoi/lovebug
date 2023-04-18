@@ -168,6 +168,7 @@ function init() {
       });
             o.addEventListener('mouseover', function () {
                 const audio = new Audio(`${AUDIO_PATH}${i + 1}.wav`);
+		audio.classList.add('audio');
                 audio.play();
               });
           }
