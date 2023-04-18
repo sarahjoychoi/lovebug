@@ -48,14 +48,18 @@
         audio.play();
       });
       
-      function toggleMute() {
-        var audio = document.getElementById("bgm");
-        if (audio.muted) {
-          audio.muted = false;
-        } else {
-          audio.muted = true;
-        }
+      function togglemute() {
+      var bgm = document.getElementById("bgm");
+      var audio = document.getElementById("audio");
+
+      if (bgm.muted && audio.muted) {
+        bgm.muted = false;
+        audio.muted = false;
+      } else {
+        bgm.muted = true;
+        audio.muted = true;
       }
+    }
     </script>
   </body>
 </html>
