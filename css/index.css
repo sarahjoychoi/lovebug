@@ -51,8 +51,8 @@
     position: absolute;
     z-index : 0;
     height: 10vh;
-    width: 28%;
-    right: 0;
+    width: 30%;
+    right: -2%;
     top : 20%;
     background-color: #f3f3f3;
     border-bottom-left-radius: 8px;
