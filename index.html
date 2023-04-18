@@ -48,17 +48,22 @@
         audio.play();
       });
       
-      function togglemute() {
-      var bgm = document.getElementById("bgm");
-      var audio = document.getElementById("audio");
+function togglemute() {
+  var bgm = document.getElementById("bgm");
+  var audioElements = document.getElementsByClassName("audio");
 
-      if (bgm.muted && audio.muted) {
-        bgm.muted = false;
-        audio.muted = false;
-      } else {
-        bgm.muted = true;
-        audio.muted = true;
-      }
+  if (bgm.muted) {
+    bgm.muted = false;
+    for (var i = 0; i < audioElements.length; i++) {
+      audioElements[i].muted = false;
+    }
+  } else {
+    bgm.muted = true;
+    for (var i = 0; i < audioElements.length; i++) {
+      audioElements[i].muted = true;
+    }
+  }
+}
     }
     </script>
   </body>
