@@ -495,7 +495,7 @@ function animate(){
     }    
   }
     
-  delta = clock.getDelta() * 0.3;
+  delta = clock.getDelta() * 0.2;
 
   for ( const mixer of mixers ) mixer.update( delta ); 
   renderer.render(scene, camera);
