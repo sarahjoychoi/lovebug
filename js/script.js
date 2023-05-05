@@ -422,7 +422,7 @@ const audio = [
   new Audio('/audio/audio-5.wav'),
 ]
 
-const muteButton = document.querySelector('.mute') // Add this class to your mute span
+const muteButton = document.querySelector('.mute')
 
 const muteAll = ()=>{
   for(let i =0; i < audio.length; i++){
