@@ -44,7 +44,7 @@ function init() {
         
   const nightTexture = new THREE.RGBELoader()
 	.setPath('skyBox/') /* <<<--- Change this path to your file path */
-	.load('moonless_golf_1k.hdr', function(texture){
+	.load('bedroom-2.hdr', function(texture){
     nightTexture.mapping = THREE.EquirectangularReflectionMapping;
     envMap = pmremGenerator.fromEquirectangular(texture).texture;
     scene.environment = envMap;
@@ -152,7 +152,7 @@ function init() {
         metalness: 0.8,
         roughness: 0.08,
         transparent: true,
-        opacity: 0.8,
+        opacity: 0.7,
         transmission: 0.1,
         thickness: 5,
         side: THREE.DoubleSide,
