@@ -168,7 +168,6 @@ function init() {
       });
             o.addEventListener('mouseover', function () {
                 const audio = new Audio(`${AUDIO_PATH}${i + 1}.wav`);
-		audio.classList.add('audio');
                 audio.play();
               });
           }
@@ -349,7 +348,7 @@ const initTimeline = (tl,subtitleContainer,textArray)=>{
 
   let time = 0
 
-  for(let i = 0; i < textArray.length - 1; i++){
+  for(let i = 0; i < textArray.length; i++){
     tl.to(subtitleContainer,{
       opacity : 1,
       duration : .5,
@@ -422,6 +421,16 @@ const audio = [
   new Audio('/audio/audio-4.wav'),
   new Audio('/audio/audio-5.wav'),
 ]
+
+const muteButton = document.querySelector('.mute') // Add this class to your mute span
+
+const muteAll = ()=>{
+  for(let i =0; i < audio.length; i++){
+    !audio[i].paused ? audio[i].pause() : null    
+  }
+}
+
+muteButton.addEventListener('click',()=> muteAll())
 
 const playAudio = (objectName)=>{
 
