@@ -152,7 +152,7 @@ function init() {
         metalness: 0.8,
         roughness: 0.08,
         transparent: true,
-        opacity: 0.5,
+        opacity: 0.8,
         transmission: 0.1,
         thickness: 5,
         side: THREE.DoubleSide,
