@@ -126,7 +126,7 @@
       color: black;
       border: 1px solid black;
       border-radius: 9px;
-      padding: 5px 10px;
+      padding: 2px 5px;
       cursor: pointer;
   }
 
@@ -134,7 +134,6 @@
     color: hotpink;
     border: 1px solid hotpink;
     border-radius: 9px;
-    padding: 5px 10px;
   }
 
 
