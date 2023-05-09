@@ -19,7 +19,8 @@
             <p>-</p>
             <p id="fr">FR</p> 
         </div>
-       </div>           
+       </div>
+      <span class="help" onclick="showPopup()">?</span>
     </div>
     
     <div id="popup-background">
@@ -55,7 +56,7 @@
         audio.play();
       });
       
-        function toggleMute() {
+      function toggleMute() {
         var audio = document.getElementById("bgm");
         if (audio.muted) {
           audio.muted = false;
@@ -64,11 +65,16 @@
         }
       }
       
-      function hidePopup() {
-    var popupBackground = document.getElementById("popup-background");
-    popupBackground.style.display = "none";
-  }
-     
+     function hidePopup() {
+        var popupBackground = document.getElementById("popup-background");
+        popupBackground.style.display = "none";
+     }
+      
+     function showPopup() {
+        var popupBackground = document.getElementById("popup-background");
+        popupBackground.style.display = "flex";
+     }
+
     </script>
   </body>
 </html>
