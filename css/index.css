@@ -104,7 +104,6 @@
         width: 100vw;
         background-color: white;
         opacity: 0.8;
-        z-index: 9999;
         display: flex;
         justify-content: center;
         align-items: center;
