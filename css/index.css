@@ -96,7 +96,7 @@
     font-weight: 800;
   }
 
-      #popup-background {
+  #popup-background {
         position: fixed;
         top: 0;
         left: 0;
@@ -108,15 +108,15 @@
         display: flex;
         justify-content: center;
         align-items: center;
-      }
+  }
 
-      #popup-video {
+  #popup-video {
         height: 70vh;
         opacity: 0.8;
         border-radius: 5px;
-      }
+  }
 
-      #close-button {
+  #close-button {
       position: fixed;
       top: 80vh;
       left: 50%;
@@ -124,10 +124,17 @@
       font-family: Helvetica;
       font-size: 10pt;
       color: black;
-      border: 1px solid #a8a8a8;
+      border: 1px solid black;
       border-radius: 9px;
       padding: 5px 10px;
       cursor: pointer;
-    }
+  }
+
+  #close-button:hover {
+    color: hotpink;
+    border: 1px solid hotpink;
+    border-radius: 9px;
+    padding: 5px 10px;
+  }
 
 
