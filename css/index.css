@@ -110,21 +110,23 @@
       }
 
       #popup-video {
-        height: 70vh;
+        height: 60vh;
         opacity: 0.8;
         border-radius: 5px;
       }
 
       #close-button {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        font-family: Helvetica, sans-serif;
-        font-size: 11pt;
-        color: black;
-        border: 1px solid #a8a8a8;
-        border-radius: 9px;
-        padding: 5px 10px;
-        cursor: pointer;
-      }
+      position: fixed;
+      top: 75vh;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: Helvetica;
+      font-size: 10pt;
+      color: black;
+      border: 1px solid #a8a8a8;
+      border-radius: 9px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
 
