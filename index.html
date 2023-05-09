@@ -21,7 +21,14 @@
         </div>
        </div>           
     </div>
-
+    
+    <div id="popup-background">
+        <video id="popup-video" autoplay>
+          <source src="vid/instructions.mp4" type="video/mp4">
+        </video>
+        <div id="close-button" onclick="hidePopup()">click to begin</div>
+    </div>
+    
     <div id="mainScene"></div>
 
     <div id="subtitles">
@@ -56,6 +63,12 @@
           audio.muted = true;
         }
       }
+      
+      function hidePopup() {
+    var popupBackground = document.getElementById("popup-background");
+    popupBackground.style.display = "none";
+  }
+     
     </script>
   </body>
 </html>
