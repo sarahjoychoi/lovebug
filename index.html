@@ -9,7 +9,7 @@
   <body>
 
     <div class="navbar">
-      <span class="help" onclick="showPopup()">?</span>
+      <span class="help" onclick="openLightbox()">?</span>
       <span><a href="about.html">about</a></span>
       <span class="mute" onclick="toggleMute()">mute</span>
       <span class="subtitleButton">subtitles</span>
@@ -23,12 +23,14 @@
        </div>
     </div>
     
-    <div id="popup-background">
-        <video id="popup-video" autoplay loop>
-          <source src="vid/instructions.mp4" type="video/mp4">
-        </video>
-        <div id="close-button" onclick="hidePopup()">click to begin</div>
+<div id="lightbox-background">
+    <div id="lightbox-container">
+      <video id="lightbox-video" autoplay loop>
+        <source src="vid/instructions.mp4" type="video/mp4">
+      </video>
+      <div id="close-button" onclick="closeLightbox()">click to begin</div>
     </div>
+</div>
     
     <div id="mainScene"></div>
 
@@ -65,15 +67,17 @@
         }
       }
       
-     function hidePopup() {
-        var popupBackground = document.getElementById("popup-background");
-        popupBackground.style.display = "none";
-     }
-      
-     function showPopup() {
-        var popupBackground = document.getElementById("popup-background");
-        popupBackground.style.display = "flex";
-     }
+function openLightbox() {
+    var lightboxBackground = document.getElementById("lightbox-background");
+    var lightboxVideo = document.getElementById("lightbox-video");
+    lightboxVideo.currentTime = 0;
+    lightboxBackground.style.display = "flex";
+  }
+  
+  function closeLightbox() {
+    var lightboxBackground = document.getElementById("lightbox-container");
+lightboxBackground.style.display = "none";
+}
 
     </script>
   </body>
