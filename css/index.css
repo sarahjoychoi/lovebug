@@ -96,7 +96,7 @@
     font-weight: 800;
   }
 
-  #popup-background {
+  #lightbox-background {
         position: fixed;
         top: 0;
         left: 0;
@@ -109,7 +109,7 @@
         align-items: center;
   }
 
-  #popup-video {
+  #lightbox-video {
         height: 70vh;
         opacity: 0.8;
         border-radius: 5px;
