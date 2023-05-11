@@ -54,9 +54,23 @@
     <script src="js/script.js" onerror="reloadScene()"></script>
     <script>  
     window.addEventListener('load', function() {
-        var audio = document.getElementById('bgm');
-        audio.play();
+      var audio = document.getElementById('bgm');
+      audio.play();
+
+      var video = document.getElementById('lightbox-video');
+      video.addEventListener('error', function() {
+        console.log('Video failed to load');
+        video.load();
+        video.play();
       });
+
+      var bgm = document.getElementById('bgm');
+      bgm.addEventListener('error', function() {
+        console.log('BGM audio failed to load');
+        bgm.load();
+        bgm.play();
+      });
+    });
       
       function toggleMute() {
         var audio = document.getElementById("bgm");
@@ -80,22 +94,7 @@
         mainScene.innerHTML = '';
         location.reload();
       }
-
-      var video = document.getElementById("lightbox-video");
-
-      video.addEventListener("error", function() {
-        console.log("Video failed to load");
-        video.load();
-        video.play();
-      });
-
-      var bgm = document.getElementById("bgm");
-
-      bgm.addEventListener("error", function() {
-        console.log("BGM audio failed to load");
-        bgm.load();
-        bgm.play();
-      });
+      
     </script>
   </body>
 </html>
