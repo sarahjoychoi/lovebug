@@ -85,6 +85,13 @@ function reloadScene() {
     location.reload();
   }
 
+      var video = document.getElementById("lightbox-video");
+
+video.addEventListener("error", function() {
+  console.log("Video failed to load");
+  video.load();
+});
+
     </script>
   </body>
 </html>
