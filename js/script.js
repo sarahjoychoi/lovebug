@@ -43,8 +43,8 @@ function init() {
   pmremGenerator.compileEquirectangularShader();
         
   const nightTexture = new THREE.RGBELoader()
-	.setPath('skyBox/') /* <<<--- Change this path to your file path */
-	.load('bedroom-2.hdr', function(texture){
+	.setPath('skyBox/') 
+	.load('bedroom-1.hdr', function(texture){
     nightTexture.mapping = THREE.EquirectangularReflectionMapping;
     envMap = pmremGenerator.fromEquirectangular(texture).texture;
     scene.environment = envMap;
