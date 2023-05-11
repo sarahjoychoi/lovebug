@@ -421,7 +421,7 @@ const audio = [
   new Audio('/audio/audio-4.wav'),
   new Audio('/audio/audio-5.wav'),
 ]
-
+/*
 const muteButton = document.querySelector('.mute')
 
 const muteAll = ()=>{
@@ -431,6 +431,7 @@ const muteAll = ()=>{
 }
 
 muteButton.addEventListener('click',()=> muteAll())
+*/
 
 const playAudio = (objectName)=>{
 
