@@ -81,6 +81,11 @@
       function openLightbox() {
         var lightboxBackground = document.getElementById("lightbox-background");
         var lightboxVideo = document.getElementById("lightbox-video");
+        
+        if (lightboxVideo.paused) {
+          lightboxVideo.play();
+        }
+        
         lightboxVideo.currentTime = 0;
         lightboxBackground.style.display = "flex";
       }
