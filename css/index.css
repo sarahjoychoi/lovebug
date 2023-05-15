@@ -116,6 +116,12 @@
         border-radius: 5px;
   }
 
+    @media only screen and (max-width: 900px) {
+		#lightbox-video {
+        height: 50vh;
+        }
+		  }
+      
   #close-button {
       position: fixed;
       top: 80vh;
