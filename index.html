@@ -54,54 +54,67 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="js/script.js" onerror="reloadScene()"></script>
     <script>  
-    window.addEventListener('load', function() {
-      var audio = document.getElementById('bgm');
-      audio.loop= true;
-      audio.play();
+window.addEventListener('load', function() {
+  var audio = document.getElementById('bgm');
+  audio.loop = true;
+  audio.play();
 
-      var video = document.getElementById('lightbox-video');
-      video.addEventListener('error', function() {
-        console.log('Video failed to load');
-        video.load();
-        video.play();
-      });
+  var video = document.getElementById('lightbox-video');
+  video.addEventListener('error', function() {
+    var popup = window.confirm('video failed to load: click OK to reload');
 
-      var bgm = document.getElementById('bgm');
-      bgm.addEventListener('error', function() {
-        console.log('BGM audio failed to load');
-        bgm.load();
-        bgm.play();
-      });
-    });
+    if (popup) {
+      location.reload();
+    }
+  });
+
+  var bgm = document.getElementById('bgm');
+  bgm.addEventListener('error', function() {
+    var popup = window.confirm('audio failed to load: click OK to reload');
+
+    if (popup) {
+      location.reload();
+    }
+  });
+});
       
       function toggleMute() {
         var audio = document.getElementById("bgm");
         audio.muted = !audio.muted;
       }
       
-      function openLightbox() {
-        var lightboxBackground = document.getElementById("lightbox-background");
-        var lightboxVideo = document.getElementById("lightbox-video");
-        
-        if (lightboxVideo.paused) {
-          lightboxVideo.play();
-        }
-        
-        lightboxVideo.currentTime = 0;
-        lightboxBackground.style.display = "flex";
-      }
+function openLightbox() {
+  var lightboxBackground = document.getElementById("lightbox-background");
+  var lightboxVideo = document.getElementById("lightbox-video");
+
+  lightboxBackground.style.display = "flex";
+
+  function reloadAndPlay() {
+    lightboxVideo.currentTime = 0;
+    lightboxVideo.load();
+    lightboxVideo.play();
+  }
+
+  lightboxVideo.addEventListener('click', reloadAndPlay);
+}
+
 
       function closeLightbox() {
         var lightboxBackground = document.getElementById("lightbox-background");
         lightboxBackground.style.display = "none";
       }
       
-      function reloadScene() {
-        var mainScene = document.getElementById('mainScene');
-        mainScene.innerHTML = '';
-        location.reload();
-      }
-      
+function reloadScene() {
+  var mainScene = document.getElementById('mainScene');
+  mainScene.innerHTML = '';
+
+  if (mainScene.children.length === 0) {
+    setTimeout(reloadScene, 500);
+  } else {
+    location.reload();
+  }
+}
+
     </script>
   </body>
 </html>
